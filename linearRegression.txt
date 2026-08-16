@@ -87,12 +87,82 @@
 
         * 
             dJ/db = ybar - m*xbar - b = 0
-            b = ybar - (m*xbar)
-
+            b = ybar - (m*xbar) # final equation
         
+        * 
+            J = sum(i=1 till n) (yi - m*xi - b)^2
+            J = sum(i=1 till n) (yi - m*xi - ybar + m*xbar)^2 # substituting b 
+            dJ/dm = -2 (yi - m*xi - ybar + m*xbar) (-xi + xbar) = 0
+
+            m = sum((xi-xbar)(yi-ybar))/sum((xi-xbar)^2) # final equation  
 
 
+    ## Regression methods - To check the efficiency of the Regression algorithm
+        1. Mean Absolute error
+        2. Mean square error
+        3. Root mean square error
+        4. R2 score - co efficient of determination
+        5. Adjusted R2 score
 
+    ## Mean Absolute Error
+        * | yi - yihat |  = this is the absolute error at point i
+        * MAE = (1/n) sum(i=1 to n) (| yi - yihat |)
 
-
+        * Advantages:
+            1. Unit of the output and MAE are the same and hence easy to compare
+            2. Robust to outliers
         
+        * Disavantages: Modulus function graph is not differential at point 0 - hence mean squared error is used
+    
+    ## Mean Squared Error
+        * MSE = MAE = (1/n) sum(i=1 to n) (yi - yihat)^2
+        * Advantages: Used as loss function because it is diffential at 0
+        * Disavantages
+            1. Unit of MSE is the sqare of unit of y and hence difficult to interpret
+            2. It is senstitive to outliers. Not robust to outliers
+
+    ## Root Mean Squared Error
+        * RMSE = sqrt(MSE)
+        * Advantages: Unit of output and y are same
+        * Disavantages : Not robust to outliers
+
+    ## R2 Score - Tells how well the model is performing
+        * Independent of Context
+        * Worst option for predicting is just providing the mean of y axis
+            Eg: irrespective of the x axis: cgpa, predict y=y_mean
+        * Best option is to do LR
+        * R2 score: how much the LR line is good compared to the mean line
+
+        * Also called as co-efficient of determination or goodness of fit 
+
+        * Formula:
+            R2Score = 1 - (SSr - SSm),
+                where,  SSr is the sum of squared error in regression line
+                        SSm is the sum of squared error in the mean line
+
+        * Interpretation:
+            --> R2Score = 0 means, SSr == SSm : Bad model
+            --> R2Score = 1 means, SSr/SSm = 0 : possible when SSr = 0, means there is no mistake of regression line : Best model  
+
+            * Best Model when R2Score is towards 1
+
+            --> R2Score < 0 i.e negative, SSr/SSm > 1, means: SSr > SSm
+                * Regression line is worst than the mean line 
+
+            --> If R2Score = 0.80 for the data of cgpa and package
+                * means cgpa is able to explain 80 percent of the variance of the package
+                * i.e input is able to explain 80 percent of the variance of the output
+
+        * Disavantages:
+            1. Adding more features, increases the R2Score or will remain the same, even if the features added are irrelevant
+
+            * This is handled by Adjusted R2Score
+
+    ## Adjusted R2 Score 
+        * Formula
+
+            A_R2Score = 1 - [[(1-R2Score)(n-1)]/(n-1-k)]
+                where,  n is the number of rows (total data points)
+                        k is the total number of independent rows 
+
+        * Helps in multiple LR problem
