@@ -1,0 +1,98 @@
+# Real world data is affected by real world parameters
+
+### Linear Regression ###
+
+    # Easy to understand
+    # Also used in other algorithms
+
+    # It is a supervised ML
+    # Types of regression
+        # 1. Simple LR : one input column and one output column
+        # 2. Multiple LR : more than one input column
+        # 3. Polynomial LR
+
+### Simple Linear Regression ###
+    # One input column and one output column
+    # For almost linear data
+    # Fits a straight line through data: y=mx+b
+
+
+    ## Coding - simpleLinearRegression.py 
+        # y = mx + b
+        # package = m * cgpa + b
+
+        1. m is the weightage - how much the package is dependant on cgpa
+            * if m is more, then package is more dependent on cgpa
+            * if m is less, then package is less dependant on cgpa
+
+        2. b 
+            if b=0,
+            then package = m * cgpa
+            when cgpa is 0, then package is also 0, this is immpractical
+
+            b is called as offset value, even if cgpa is zero(b != 0), then y has some value (b)
+
+    ## Finding value of m and b
+        1. Closed form solution: expression that can be expressed through finite number of standard operations. Formula based.
+        * Ordinary least sqare (OLS)
+        * for less number of features/dimensions 
+        * scikit learn uses this feature
+
+        2. Non closed form solution: uses approximation techniques
+        * Gradient descent
+        * uses differntiation and integration
+        * it helps for higher dimensional data
+        * sgd regressor used this method
+
+    ## OLS
+        * b = ybar - (m*xbar)
+        * m = sum((xi-xbar)(yi-ybar))/sum((xi-xbar)^2)
+
+        where, 
+            xbar = mean value of x
+            ybar = mean value of y
+            xi = current value of x 
+            yi = current value of y 
+
+    ## Mathematical Derivation
+        error_function (J) = sum(i=1 till n) d(i)^2
+
+        error at a point = yi - yihat
+
+        therefore, 
+            error_function J = sum(i=1 till n) (yi - yihat)^2
+
+        m and b decides the values of yihat
+        find m and b such that, it should reduce the error
+
+            error_function: J(m,b) = sum(i=1 till n) (yi - m*xi - b)^2
+
+    ## m and b to minimise error_function
+        * b is 0
+            -> J(m) = sum(i=1 till n) (yi - m*xi)^2
+            -> line can just rotate through center (b=0)
+            -> changing values of m, changes the value of error and creates a curve
+        
+        * m is 1
+            -> J(b) = sum(i=1 till n) (yi - xi - b)^2
+            -> Line can just be shifted and can't rotate or change the angle
+            -> changing values of b, changes the value of error and creates a curve
+
+        * for certain values of m and b, errors are high and for certain values of m and b, errors are minimum 
+
+        * at minimum slope = 0
+        * slope means derivative
+
+        * dJ/dm = 0 and dJ/dm = 0, through this we can find the value of m and b
+
+        * 
+            dJ/db = ybar - m*xbar - b = 0
+            b = ybar - (m*xbar)
+
+        
+
+
+
+
+
+        
