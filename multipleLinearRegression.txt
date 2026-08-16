@@ -1,0 +1,15 @@
+# If input has more than one feature, then multiple linear regression is used
+# Real life data usually has this kind of data - has more than one features
+
+### Consider the example of cgpa, iq, package
+    * This data is in 3D co ordinate system and hence we fit a plane
+    * Equation: y = w0 + w1x1 + w2x2
+    * x1 = cgpa, x2 = iq, 
+    * w0 = intercept
+    * w1 = slope of xq, w2 = slope of x2
+
+    * Goal = w0, w1, w2, ... 
+    * if w1 is very high, it means that, y is highly dependent on x1 
+
+
+# Mathematical Formulation

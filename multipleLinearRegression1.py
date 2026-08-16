@@ -1,0 +1,51 @@
+from sklearn.datasets import make_regression
+import pandas as pd
+import numpy as np
+
+import plotly.express as px
+import plotly.graph_objects as go
+
+from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score,root_mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+X,y = make_regression(n_samples=100, n_features=2, n_informative=2, n_targets=1, noise=50)
+
+df = pd.DataFrame({'feature1':X[:,0],'feature2':X[:,1],'target':y})
+print(df.head())
+print(df.shape)
+
+fig = px.scatter_3d(df, x='feature1', y='feature2', z='target')
+# fig.show()
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=3)
+
+lr = LinearRegression()
+lr.fit(X_train, y_train)
+
+y_pred = lr.predict(X_test)
+print(y_pred)
+
+print(mean_squared_error(y_test, y_pred))
+print(mean_absolute_error(y_test, y_pred))
+print(root_mean_squared_error(y_test, y_pred))
+print(r2_score(y_test, y_pred))
+
+
+
+### For plotting a graph
+x = np.linspace(-5, 5, 10)
+y = np.linspace(-5, 5, 10)
+xGrid, yGrid = np.meshgrid(y, x)
+
+xGrid.ravel().reshape(1, 100)
+yGrid.ravel().reshape(1, 100)
+
+final = np.vstack((xGrid.ravel().reshape(1, 100), yGrid.ravel().reshape(1, 100))).T
+
+z_final = lr.predict(final).reshape(10,10)
+z = z_final
+
+fig = px.scatter_3d(df, x='feature1', y='feature2', z='target')
+fig.add_trace(go.Surface(x = x, y = y, z =z ))
+fig.show() # it is a plane
