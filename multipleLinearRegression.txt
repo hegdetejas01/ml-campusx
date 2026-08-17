@@ -8,8 +8,97 @@
     * w0 = intercept
     * w1 = slope of xq, w2 = slope of x2
 
-    * Goal = w0, w1, w2, ... 
+    * Goal = Calculate: w0, w1, w2, ... 
     * if w1 is very high, it means that, y is highly dependent on x1 
 
 
 # Mathematical Formulation
+    * cgpa , iq , package are correspondingly x1, x2, y
+    * suppose i know the value of w0, w1, w2
+    * find yihat by the formula: w0 + xijw1 +  xijw2
+    * 
+        y1hat = w0 + w1x11 + w2x12; 
+        y2hat = w0 + w1x21 + w2x22; 
+        y3hat = w0 + w1x31 + w2x32
+
+    if i have m features,
+        * y1hat = w0 + w1x11 + w2x12 + ... + wm_x1m
+        * y2hat = w0 + w1x21 + w2x22 + ... + wm_x2m 
+        * y3hat = w0 + w1x31 + w2x32 + ... + wm_x3m
+
+    if i have n students data,
+        * y1hat = w0 + w1x11 + w2x12 + ... + wm_x1m
+        * y2hat = w0 + w1x21 + w2x22 + ... + wm_x2m 
+        * y3hat = w0 + w1x31 + w2x32 + ... + wm_x3m
+                        .
+                        .
+                        .
+        * ynhat = w0 + w1xn1 + w2xn2 + ... + wm_xnm
+
+    Yhat    =  [y1hat, ..., ynhat]                  # column vector
+            =  [w0 + w1x11 + w2x12 + ... + wm_x1m,
+                w0 + w1x21 + w2x22 + ... + wm_x2m, 
+                w0 + w1x31 + w2x32 + ... + wm_x3m,
+                ...,
+                w0 + w1xn1 + w2xn2 + ... + wm_xnm]
+
+    X = [1, x11, x12, ..., x1m,
+        1, x21, x22, ..., x2m,
+        .
+        .
+        .
+        1, xn1, xn2, ..., xnm]
+    W = [w0, w1, w2, w3 ..., wm]            # this is a column vector
+
+    Yhat = X.W (dot product)
+    
+        W is of the shape (m+1) x 1
+        X is of the shape n x (m+1) 
+        Output Yhat is of the shape n x 1
+
+
+
+# Error function of Multiple Linear Regression
+    
+    Y = [y1,y2,y3,...,yn]                   # this is a column vector
+    Yhat = [y1hat, y2hat, ..., ynhat]       # this is a column vector
+
+    e = Y - Yhat = [y1 - y1hat,
+                    y2 - y2hat,
+                    .
+                    .
+                    .
+                    yn - ynhat]
+
+    e(T)e = (1xn) (nx1) = [(y1-y1hat)^2 + (y2-y2hat)^2 + ... + (yn-ynhat)^2]
+
+          = sum(i=1 to n) (yi - yihat)^2
+
+    Error J = e(T)e
+            = (Y - Yhat)Transpose * (Y - Yhat)
+            = (YT - YhatT) * (Y - Yhat)
+
+    Error J = YT Y - YT Yhat - YhatT Y + YhatT Yhat
+        wkt, YT Yhat = YhatT Y
+
+    Error J = YT Y - (2 * YT Yhat) + YhatT Yhat
+
+    Error J = YT Y - (2 * YT XW) + (XW)T XW
+            = YT Y - (2 * YT XW) + WT XT XW
+
+    Error J(W) = YT Y - (2 * YT XW) + WT XT XW
+        Therefore Error function is the function of W
+        Find the such value of W for which J is minimum
+        At the minimum, the slope = 0
+
+# Finding the slope 
+    Error J(W) = YT Y - (2 * YT XW) + WT XT XW
+    dJ/dW = 0 - 2*YhatX + 2 * WT XT X = 0
+
+    W = (XT X)(inverse) XT Y
+
+
+
+# Why Gradient Descent when there is OLS method?
+    * In OLS, we have to compute inverse of a matrix which is computationally expensive with the complexity of n^3
+    * Therefore we use Gradient Descent

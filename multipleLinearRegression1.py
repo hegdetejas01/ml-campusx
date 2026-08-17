@@ -16,7 +16,7 @@ print(df.head())
 print(df.shape)
 
 fig = px.scatter_3d(df, x='feature1', y='feature2', z='target')
-# fig.show()
+fig.show()
 
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=3)
 
