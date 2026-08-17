@@ -1,0 +1,44 @@
+# Differentiation
+    It is the process of finding the derivative of a function. The derivative of a function represents the instantaneous rate of change of the function wrt its variable
+
+    Rate of Change : 
+        if y = f(x) = x^2
+        if x is increased by delta x, then by what value y changes
+        rate of change = (f(x+deltax) - f(x)) / deltax
+
+    Instantaneous rate of change : 
+        instantaneous means at a single point
+        that is delta x moves towards ZERO (very small)
+        instantaneous rate of change = (f(x+dx) - f(x)) / dx : this is derivative
+        df(x)/dx = (f(x+dx) - f(x)) / dx
+
+    Population growth rate, velocity etc are measured for a time interval and not at a point.
+    Eg: what is the population growth rate at 1990 can't be measured,  
+        what is the velocity at time t=4 can't be calculated
+
+        To do this, we should have the difference between intervals very small (like dx) to measure at that point. This is done by differentiation.
+
+    When the difference is almost zero, they represent a same point and derivative at that point gives the slope at that point. 
+    df/dx is the slope at that point
+
+
+    # Intution of derivatives
+        y = f(x) = x^2
+        
+        dy/dx represents by what quantity y=x^2 changes when x changes by a small value
+        if, dy/dx = -2, then a small change in value of x changes the value of y by -2 times
+
+        Eg: dL/dw0 means by what value L changes when there is a small change in w0
+
+    # Deriviative of a constant is ZERO 
+
+
+# Power Rule: d(x^n)/dx = n*(x^(n-1))
+
+# Sum Rule: 
+    (f(x) + g(x))' = f'(x) + g'(x)
+    (f(x) - g(x))' = f'(x) - g'(x)
+
+# Product Rule:
+    (f(x) * g(x))' = (f'(x) * g(x)) + (f(x) * g'(x))
+    (cf(x))' = c * f'(x)
