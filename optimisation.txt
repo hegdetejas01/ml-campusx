@@ -1,0 +1,128 @@
+# Functions:   
+    * Rule that takes a input and works on it and gives a output
+    * It is a relationship between input and output where each input in connected to a particular output i.e given the same input gives the exactly same output
+
+    y = f(x) means y is a function of x, x is the input and y is the output
+    f(x) defines a rule like, f(x) = x^2 + 2
+    This is a single variable function
+
+    # Multivariable function
+        * z = f(x,y) is the multivariable function,
+        * Example: Z = f(x,y) = x + y, the graph of this function is in 3D
+
+        * if i have n inputs, the graph will be of n+1 dimension
+
+    # Parametes in function
+        * These are the variables used to define the behavious of the functions which influences the output of the function.
+
+        * y = f(x) = a* x^2, where a is the parameters 
+
+
+# ML model as Mathematical Functions
+    For the example of CGPA, IQ, Package
+        Y = Package
+        X = cgpa, iq 
+
+        therefore, package = f(cgpa, iq)
+
+    # Parametric and Non Parametric ML Models
+        1. Parametric ML Models:
+            * It always makes an assumptions on the data distribution
+            * Works with a fixed number of parameters irrespective of the number of rows
+            Eg: Neural Network, Linear Regression etc
+            * Goal: Finding the parameters 
+
+        2. Non Parametric ML Models:
+            * Doesn't make the assumptions on the data distribution
+            * It doesn't have a fixed number of parameter and it depends on the number of data examples(rows)
+            Eg: Decision Tree etc 
+
+        Eg: For the example of cgpa, iq, package 
+            package = f(cgpa, iq)
+            y = w0 + w1x1 + w2x2
+                w0, w1, w2 are the parameters of the model which solves the linear regression
+
+
+# Linear Regression as Parametric ML Model 
+    For the example of cgpa, iq, package 
+        package = f(cgpa, iq)
+        y = w0 + w1x1 + w2x2
+            w0, w1, w2 are the parameters of the model which solves the linear regression
+
+    Step1: Start with some random value for the parameters
+    Step2: For every row make a prediction yhat (y = w0 + w1x1 + w2x2)
+    Step3: Take the help of the loss function to find the best parameters.
+        - Loss function/Cost function/Objective function measures the difference between predicted output and the actual output (target values).
+        - Goal of the ML model is to minimise this loss function.
+        - It helps the algorithm to adjust the parameter to achieve better performance.
+
+        How to select the good loss function
+            1. Problem type
+            2. Robustness of the outliers
+            3. Interpretability and ease of use 
+            4. Differentiality of the loss function 
+                Eg: mod function is not differential at 0
+            5. Compatibility with the model
+
+
+# Calculating the parameters from a loss function
+
+    L(w0,w1,w2) = (1/n) (sum i=1 till n) (yi - yihat)^2
+        # find the value of w0,w1,w2 such that the L(w0,w1,w2) will be minimum
+
+    * This loss function will be parabolic
+    * minimum loss point is where slope of the parabolic curve is 0
+    * slope means differentiation
+
+    L(w0,w1,w2) = (1/n) (sum i=1 till n) (yi - w0 - w1x1 - w2x2)^2
+    dL/dw0 = -2 * (yi - w0 - w1x1 - w2x2) = 0 : equating the slope to zero to find w0
+
+
+    # Problem with this approach:(
+        1. Doesn't work when there is a global and local minimum
+        2. If the function is non convex: it might have more than one minimum and maximum
+        3. Complexity of the loss functions: this is especially true for neural network
+        4. Scalability: massive amount of data and features, increase the operational cost, time etc
+        5. If the data is online learning, this technique can't be used
+
+        This problem can be solved by various types of optimisation techniques
+        Eg. gradient descent, quadratic programming, newton method, linear programming etc
+            * Linear Regression, Logistic Regression, Deep Learning, Perception depends on gradient descent
+
+    
+# Convex and Non Convex Loss Functions
+    * Convex has only one GLOBAL minimum: Loss function in OLS in linear regression is the convex function and hence we applied the method specified above
+    * Non convex can have more than minimas and maximas
+    
+
+# Gradient Descent
+    w0 (new) = w0 (old) - (alpha * dL/dw0)
+
+        This solves the problem of moving towards maximas, but it fails to solve the problem of local minimas
+
+# Gradient Descent with multiple parameters
+    Parameters depends on the number of features 
+    If there are m features [x1,x2,x3,...,xm], 
+    then there are m+1 parameters [w0,w1,w2,w3,...,wm]
+
+    * With the increase in the number of parameters, the loss function will be number of parameter + 1 dimension
+    - Here it will be m+2 dimension
+
+        https://docs.google.com/document/d/1QdPxRKKcAStvsUNFmIf2YHN8KgIuBKiUm_j8F7MIT8w/edit?usp=sharing
+        The loss function (such as Mean Squared Error) maps the entire parameter vector to a single real-valued scalar cost J
+        When visualizing or geometrically representing the graph of this function:
+            Each parameter requires 1 coordinate axis in the input space: m+1 axes.
+            The evaluated loss value J(w) requires 1 coordinate axis for the output: 1 axis.
+        Total Dimensions of the Loss Surface=(m+1)+1=m+2
+
+    w0 (new) = w0 (old) - (alpha * dL/dw0)
+    w1 (new) = w1 (old) - (alpha * dL/dw1)
+    w2 (new) = w2 (old) - (alpha * dL/dw2)
+
+
+    # Problems with Gradient Descent
+        1. Getting stuck in local minimum or saddle point (point which is not minimum but the slope is almost 0)
+        2. Ill conditioning
+        3. Vanishing and Exploding gradients
+        4. Overfitting
+        5. Scalability: Computationally expensive especially in neural methods
