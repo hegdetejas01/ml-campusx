@@ -1,0 +1,79 @@
+# Gradient Descent 
+    * It is a first order optimisation algorithm for finding the local minimum of a differnential function
+    * Used in linear regression, logistic regression, back bone of deep learning
+
+# Intution
+    minimise the loss function J 
+        J = sum(i=1 till n) (yi - yihat)^2
+        J(m, b) = sum(i=1 till n) (yi - mxi - b)^2
+
+    Consider that we know the value of m(=1)
+    then, J is only the function of b 
+        J(b) = sum(i=1 till n) (yi - xi - b)^2
+
+    Graph of L versus b will be a parabolic graph 
+    Goal: Find the minimum of in the graph
+
+    Step1: Select a random b (=-10)
+    Step2: Find the slope of the graph at that slope: find the derivative
+    Step3: 
+        If slope is negative - increment b, else - decrement b
+        b_new = b_old - slope
+
+            Use a learning rate 
+            b_new = b_old - (alpha)*(slope)
+
+    When to stop?
+        1. when b_new - b_old is a less number (Eg. 0.000001), then stop the descent
+        2. decide the number of iterations (epochs)
+
+# Mathematical Formulation
+    Start with the random value of b 
+    for i in range(epochs):
+        b_new = b_old - (alpha)*(slope)
+
+    Equation of the slope for b
+        J(m, b) = sum(i=1 till n) (yi - mxi - b)^2
+        dJ/db = -2 * sum(i=1 till n) (yi - mxi -b)
+            if my initial guess of b=0 and i know the value of m(=1),
+            then dJ/db = -2 * sum(i=1 till n) (yi - xi) : this gives the slope at b=0
+
+    b_new = b_old - (alpha)*(slope)
+
+
+# GD can be applied in any algorithm where the loss function is completely differential, therefore it is applicable even for logistic regression
+
+# Adding m into the GD 
+    1. Initial random guess for m=1  and b=0
+    2. set epoch and alpha
+
+    3. for i in range(epoch):
+        b = b - alpha * slope
+        m = m - alpha * slope
+
+    4. From previous section, we know the slope of b
+    5. Loss function is in 3D now - L, m, and b
+
+    6. L = sum(i=1 to n) (yi - mxi - b)^2
+    
+    7.  b_slope = dL/db = -2 * sum(i=1 to n) (yi - mxi - b)
+        m_slope = dL/dm = -2 * sum(i=1 to n) (yi - mxi - b)(xi)
+
+
+# Effect of Learning Rate on GD
+    1. When alpha is very small:
+        takes too many interations and too much time to convege at minimum
+
+    2. When alpha is too large:
+        starts overshooting and alpha may no converge at all
+        zig-zag movement
+
+# Effect of Loss Function on GD
+    * The function used here is a perfect convex function
+    * If the loss function has global and local minimas, there is a possibility of getting stuck at the local minima 
+    * When a loss function creates a plateau, then the step size becomes small (because slope is almost zero), also called as saddle point, it take more iterations to converge
+
+# Effect of data
+    * if all dimensions are in the same scale, it converges faster
+    * to bring them to same scale, the process is called as regularisation
+    * else, it take too much iterations and hence time to reach the minima
