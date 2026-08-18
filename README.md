@@ -5,3 +5,4 @@
     - multiple (sklearn, ownClass, theory)
     - optimisation
     - differential calculus
+    - gradient descent

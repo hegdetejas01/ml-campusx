@@ -42,3 +42,40 @@
 # Product Rule:
     (f(x) * g(x))' = (f'(x) * g(x)) + (f(x) * g'(x))
     (cf(x))' = c * f'(x)
+
+# Quotient Rule:
+    d/dx (f(x)/g(x)) = ((f'(x) * g(x)) - (f(x) * g'(x)))/(g(x))^2
+
+# Chain Rule:
+    d/dx (f(g(x))) = f'(g(x)) * g'(x) = df/dg * dg/dx
+
+# Partial Differentiation:
+    y = f(x) is a single variable function and hence can be plotted in 2D system
+    y = f(a,b) = a^2 + b^2 is a 2 variable function and needs 3D to plot the graph
+
+        derivative of f(a,b) is da/dx and db/dx
+
+# Higher order derivative:
+    y = f(x) = x^3
+
+    dy/dx = f'(x) = 3 x^2
+    f''(x) = 3*2 * x = 6x
+
+        f''(x): this is 2nd order derivative and measures instantaneous rate of change of slope and it says whether the slope is maximum or maximum (when slope = 0)
+
+        f'''(x) is the 3rd order derivative
+
+# Matrix Differentiation
+    if A is the matrix, then Ax =   [[a11, a12][[x1]
+                                    [a21, a22]][x2]]
+        
+    y = Ax =    [[a11x1+a12x2]
+                [a21x1+a22x2]]
+
+            d/dx (Ax) = [[df1/dx1   df1/dx2]
+                        [df2/dx1    df2/dx2]]
+
+                    = [[a11 a12]      = A
+                        [a21 a22]]
+            
+            d/dx (Ax) = A
