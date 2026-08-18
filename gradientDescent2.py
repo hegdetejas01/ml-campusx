@@ -29,6 +29,14 @@ class GDRegressor:
         self.alpha = alpha
         self.epochs = epochs
 
+    @staticmethod
+    def plotGraph(X, Y, xlabel, ylabel, title):
+        plt.plot(X,Y)
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.show()
+    
     def fit(self, X, y):
 
         initialCost = np.sum((y - (self.m * X.ravel()) - self.b)**2)
@@ -67,39 +75,14 @@ class GDRegressor:
         print("Final Loss = ", np.sum((y - (self.m * X.ravel()) - self.b)**2)/X.shape[0])
         print("RMSE (same unit): ", rmse(y, y_pred=(self.m * X.ravel()) + self.b))
 
-        plt.plot(iValue, bValue)
-        plt.title("Epoch Versus B")
-        plt.ylabel("B")
-        plt.xlabel("Epoch")
-        plt.show()
-
-        plt.plot(iValue, mValue)
-        plt.title("Epoch Versus M")
-        plt.ylabel("M")
-        plt.xlabel("Epoch")
-        plt.show()
-
-        plt.plot(bValue, cost)
-        plt.title("B Versus Cost")
-        plt.ylabel("Cost")
-        plt.xlabel("B")
-        plt.show()
-
-        plt.plot(mValue, cost)
-        plt.title("M Versus Cost")
-        plt.ylabel("Cost")
-        plt.xlabel("M")
-        plt.show()
-
-        plt.plot(cost, iValue)
-        plt.title("Cost Versus Epoch")
-        plt.ylabel("Epoch")
-        plt.xlabel("Cost")
-        plt.show()
+        self.plotGraph(iValue, bValue, "Epoch", "B", "Epoch Versus B")
+        self.plotGraph(iValue, mValue, "Epoch", "M", "Epoch Versus M")
+        self.plotGraph(bValue, cost, "B", "Cost", "B Versus Cost")
+        self.plotGraph(mValue, cost, "M", "Cost", "M Versus Cost")
+        self.plotGraph(cost, iValue, "Cost", "Epoch", "Cost Versus Epoch")
 
     def predict(self, X):
         return self.m * X.ravel() + self.b
-
 
 alpha = 0.003
 epochs = 100
