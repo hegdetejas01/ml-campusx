@@ -7,3 +7,5 @@
     - differential calculus
     - gradient descent (2 python files, one note)
     - batch GD (2 python files, one note)
+    - stochastic GD (2 python files, one note)
+    - mini batch GD (2 python files, one note)

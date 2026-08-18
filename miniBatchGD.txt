@@ -1,0 +1,7 @@
+Batch : 1 update per epoch
+Stochastic : n updates per epoch, where n is the number of rows
+
+# Mini Batch GD
+    * Batch + Stochastic
+    * if n=1000, and number of batch = 10, with each batch having 100 items
+    * Here, number of batches (10) updates per epoch
