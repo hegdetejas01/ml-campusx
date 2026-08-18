@@ -6,3 +6,4 @@
     - optimisation
     - differential calculus
     - gradient descent (2 python files, one note)
+    - batch GD (2 python files, one note)

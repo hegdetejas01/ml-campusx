@@ -1,0 +1,53 @@
+# Batch GD: using all rows (Data Points) to update m and b. This is rare and is very computationally expense
+
+    for n dimesional data, there are n+1 parameters 
+    if X = [x1,x2,...,xn] are the features, then parameter W = [w0,w1,w2,...,wn]
+
+# Mathematical Formulation
+    Consider, that I have data of cgpa(x1), iq(x2), package of 2 students
+    y = w0 + w1x1 + w2x2
+
+        Start with random initialisation, w0=0, w1=w2=1
+        Set learning rate and epoch
+        Calculate:
+            w0 = w0 - alpha*slope
+            w1 = w1 - alpha*slope
+            w2 = w2 - alpha*slope
+
+        L (w0,w1,w2) graph is in the 4D plane
+
+        Finding dL/dw0
+
+            L = (1/n) sum(i=1 to n) (yi - yihat)^2
+            L = (1/n) sum(i=1 to n) (yi - w0 - w1x1 - w2x2)^2
+                
+                Here, n=2
+            L = (1/2) [(y1 - y1hat)^2 + (y2 - y2hat)^2]
+            L = (1/2) [(y1 - w0 - w1x11 - w2x12)^2 + (y2 - w0 - w1x21 - w2x22)^2]
+
+            dL/dw0 = -2/2 [(y1-y1hat) + (y2-y2hat)]
+
+                If there are n examples,
+            dL/dw0 = (-2/n) sum(i=1 to n) (yi - yihat)
+
+
+        Finding dL/dw1
+            L = (1/2) [(y1 - y1hat)^2 + (y2 - y2hat)^2]
+            L = (1/2) [(y1 - w0 - w1x11 - w2x12)^2 + (y2 - w0 - w1x21 - w2x22)^2]
+
+            dL/dw1 = 1/2 [(-2 * x11 * (y1 - y1hat)) + (-2 * x21 * (y2 - y2hat))]
+            dL/dw1 = -2/2 [(x11 * (y1 - y1hat)) + (x21 * (y2 - y2hat))]
+
+                If there are n examples
+            dL/dw1 = -2/n sum(i=0 to n) [(yi - yihat) * Xi1]
+
+                where, Xi1 = data of the 1st feature
+
+
+        Finding dL/dw1
+            dL/dw2 = -2/n sum(i=0 to n) [(yi - yihat) * Xi2]
+                where, Xi2 = data of the 2nd feature
+
+        If there are m features, then
+            dL/dwm = -2/n sum(i=0 to n) [(yi - yihat) * Xim]
+                where, Xi2 = data of the mth feature

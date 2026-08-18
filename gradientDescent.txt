@@ -77,3 +77,9 @@
     * if all dimensions are in the same scale, it converges faster
     * to bring them to same scale, the process is called as regularisation
     * else, it take too much iterations and hence time to reach the minima
+
+
+# Types of GD
+    1. Batch GD: using all rows (Data Points) to update m and b. This is rare and is very computationally expense
+    2. Stochastic GD: using one row at a time to update m and b. It is fast but prone to error
+    3. Mini Batch GD: using a defined batch size to update the value of m and b
