@@ -1,0 +1,103 @@
+# Regresssion Analysis
+    * Helps to analyse are w and b values are usefull
+    * Helps to understand the relationship between X and y using w and b using statistics
+
+    * It is a method used to examine the relationship between one dependent variable and one or more independent variable. Goal is to understand how the dependent variable changes with changes in the independent variable(s). It also helps in predicting the output using the inputs
+
+    # Flow of LR
+        1. Define the research question
+        2. Collect and prepare data
+        3. Visualize data
+        4. Check Assumptions of LR
+        5. Fit the LR model (train the model)
+        6. Interpret the model - analyse the estimated co_efficients
+        7. Validate the model
+        8. Report analysis
+
+# Why ML problems are statistical inference problems?
+
+    - "Statistical inference problem means using the samples to esitmate the paramaters of the populations"
+
+     Consider the data of 100 students with | cgpa | iq | lpa | as the ML problem
+        
+        * lpa = f(cgpa, iq)
+
+        * All students = Population
+        100 examples here = Sample
+
+        * lpa = f(cgpa, iq) + epsilon,       
+            where epsilon is the error because, the lpa is also dependent other factors as well and not only on cgpa, iq (eg, on the day of the interview, the student was ill which can't be methametiacally). This error can't be reduced (IR-REDUCIBLE Error)
+
+        Consider the funtion, f(cgpa, iq)
+        Two types of functions - 
+            1. Parametric
+                Assumes the function is already linear
+                y = w0 + w1 cgpa + w2 iq
+                eg: LR
+
+            2. Non Parametric 
+                They don't make any decisions on the data 
+                eg: decision tree
+
+        * If the funtion of the population was truely linear, lpa = beta0 + beta1 cgpa + beta2 iq 
+        beta0, beta1, beta2 are the paramaters of the Population (which will be represents henceforth as b0, b1, b2)
+
+        * And I got the co_efficients through LR from the sample data I got w0, w1, w2
+        where, b1, b2, b0 != w1, w2, w0
+        w0, w1, w2 are different to different samples of the population
+
+        * The equation of population is : y = b0 + b1 cgpa + b2 iq = f(cgpa, iq), f is the true relationship of x and y of the population
+        * The equation of sample is : y = w0 + w1 cgpa + w2 iq = f'(cgpa, iq), f' is the relationship between x and y in the sample
+
+        This differnce between w and b is REDUCIBLE ERROR
+
+        * Therefore, lpa = f'(cgpa, iq) + reducible error + irreducible error
+
+
+# Why is Regresssion Analysis required?
+    *** Inference versus Prediction ***
+    
+    * Inference - Studing/Understanding the relationship between X and y (input and output)
+    * There is always a trade-off between prediction and inference, model good on inference is low on prediction and vice versa
+
+
+# Statsmodel Linear Regresssion
+    1. Is there a relationship between x and y (exists? linear? strong? component wise relationship?)
+
+    * F-test for overall significance (hypothesis testing)
+        * Tells if there is a relationship between X and y
+
+# TSS, RSS, ESS
+    Data - experience and salary
+
+    * Total Sum of Squares
+        TSS = sum ((yi - ybar)**2)
+        - It gives the idea of the variance of the sample data
+        - It tells the overall variance in the data
+        - It is the variance around the mean line
+
+    * Residual Sum of Squares
+        RSS = sum ((yi - yhat)**2)
+        - Despite the regression line, we are unable to explain the error between yi and yhat, just by using the experience
+        - Un Explained variance
+        - It is the variance around the regression line
+
+    * Explained Sum of Squares
+        ESS = TSS - RSS
+        - By applying the LR Line, we were able to explain some of the variance
+
+    
+# Degree of Freedom
+    The total degree of freedom (df_total) represents the total number of data points minus 1 (n-1)
+    It represents the overall variability in the dataset that can be attributed to both the model and the residuals
+
+    * Total degree of freefom in LR is divided into 2 components
+
+
+
+
+
+
+
+
+
