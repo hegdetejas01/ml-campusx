@@ -6,7 +6,7 @@
     * Equation: y = w0 + w1x1 + w2x2
     * x1 = cgpa, x2 = iq, 
     * w0 = intercept
-    * w1 = slope of xq, w2 = slope of x2
+    * w1 = slope of x1, w2 = slope of x2
 
     * Goal = Calculate: w0, w1, w2, ... 
     * if w1 is very high, it means that, y is highly dependent on x1 
