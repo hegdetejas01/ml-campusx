@@ -136,7 +136,7 @@
         * Also called as co-efficient of determination or goodness of fit 
 
         * Formula:
-            R2Score = 1 - (SSr - SSm),
+            R2Score = 1 - (SSr / SSm),
                 where,  SSr is the sum of squared error in regression line
                         SSm is the sum of squared error in the mean line
 
