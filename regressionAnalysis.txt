@@ -118,7 +118,8 @@
                  = n-1
 
 
-# F-Test for overall significance
+# F-Test for overall significance: hypothesis testing
     * It is a test used to determine whether a LR model is statistically significant, meaning it provides a better fit to the data than just using the mean of the dependent variable
 
-    * Eg. Has the prediction been better by adding the experience feature than when there was no experience data
+    * Null hypothesis - all regression co_efficients are zero
+    * Alternate hypothesis - alternate one regression co_efficient is not equal to zero

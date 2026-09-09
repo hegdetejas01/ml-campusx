@@ -9,4 +9,5 @@
     - batch GD (2 python files, one note)
     - stochastic GD (2 python files, one note)
     - mini batch GD (2 python files, one note)
+    - regression analysis
     - multicollinearity (one note)
