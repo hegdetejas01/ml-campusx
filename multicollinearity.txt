@@ -1,0 +1,119 @@
+# MultiCollinearity
+
+    * It is a statistical phenomenon that occurs when two or more independent variables in a multiple regression model are highly co-related(pearson co-efficient of 0.9 or 0.8). These variables exhibit a strong linear relationship, making it difficult to isolate the individual effects of each variable on the dependent variable
+
+    * Co-Relation/Linear relationship between 2 input columns
+
+    * Eg: iq and cgpa are corelated, whereas iq and data of birth are not corelated
+
+    * Problems caused by MultiCollinearity:
+        For cgpa, iq, package data
+        y = w0 + w1 (cgpa) + w2 (iq)
+            
+            Meaning of w2 - keeping cgpa constant, if i change iq by a small unit, how much does y changes
+            Meaning of w1 - keeping iq constant, if i change cgpa by a small unit, how much does y changes
+
+            In multicollinearity - when iq is changed cgpa also gets changed. This creates a problem. Therefore, w0, w1, w2 become unreliable
+
+# When is multicollinearity bad?
+
+    *** If LR is used only for prediction, multicollinearity will not affect the model. But if the model is used for inference, it is bad. ***
+
+    1. Inference 
+        - focuses on understanding the relationships between the variables in a model
+        - aims to draw conclusions about the underlying population or process that generated the data
+
+    2. Prediction
+        - focuses on using a model to make accurate forecasts or estimates for new, unseen data
+        Eg - Climate Prediction, Linear Regression etc
+
+    Consider, x1 and x2 are corelated
+    * Why it is bad on inference?
+        y = w0 + w1 (x1) + w2 (x2)
+        In multicollinearity - when x1 is changed x2 also gets changed. This creates a problem. Therefore, w0, w1, w2 become unreliable. Hence, we can't draw inference on x1 and x2
+
+    
+# What happens exactly in multicollinearity (mathematically) ?
+
+    1. Difficulty in indentifying the most important predictors (w0, w1, w2, ...)
+    2. Inflated standard errors of the parameters (w0, w1, w2, ...)
+    3. Unstable and unreliable estimates of parameters (w0, w1, w2, ...)
+
+# Perfect multicollinearity
+    * It occurs when one independent variable in a multiple regression model is an exact linear combination of one or more other independent variables.
+    * There is an exact linear relationship between the independent variables, making it impossible to uniquely estimate the individual effects of each variable on the dependent variable.
+
+    Co-Relation
+    x1 = a1x2 + a0 + error
+
+    Perfect co-relation
+    x1 = a1x2 + a0 (no error)
+
+    * When, the data has perfect multicollinearity, then that matrix becomes singlular, that is, determinants = 0. Hence, immposible to find w0,w1,w2,...
+
+# Non - perfect multicollinearity
+    w = X(T)X (inverse) XT y
+    * variance(w) = std error(w) = sqrt(diagonal elements of X(T)X (inverse))
+
+    This standard error will be inflated
+    When there is a strong corelation, determinant is very small
+
+    therefore, (XtX) (inverse) = (1/determinant) * XtX 
+    These values will be huge because, determinant values is very small and hence std error will be very high increasing the confidence region
+
+    w0, w1, w2, ... will be highly sensitive to input data
+
+
+# Types of multicollinearity
+
+    1. Structural - It arises due to the way in which the variables are defined or the model is constructed. It occurs when one independent variable is created as a linear combination of other independent variables or when the model includes interaction terms or higher-order terms (such as polynomial terms) without proper scaling or centering.
+    Eg: One hot encoding is a perfect multicollinearity
+
+    2. Data Driven multicollinearity - It occurs when the independent variables in the dataset are highly correlated due to the specific data being analysed. In this case, the high correlation between the variables is not a result of the way the variables are defined or the model is constructed but rather due to the observed data patterns.
+
+
+### How to detect multicollinearity
+
+    1. Check the corelation
+    2. VIF - variance inflation factor
+    3. Condition number
+
+# Co-Relation Method
+    Correlation is a measure of the linear relationship between two variables, and it is commonly used to identify multicollinearity in multiple linear regression models. Multicollinearity occurs when two or more predictor variables in the model are highly correlated, making it difficult to determine their individual contributions to the output variable.
+
+    in python pandas it is used as df.corr()
+    eg: sns.heatmap(df.corr())
+
+# VIF
+    It is a metric used to quantify the severity of multicollinearity in a multiple linear regression model. It measures the extent to which the variance of an estimated regression coefficient is increased due to multicollinearity.
+    
+    The VIF for the predictor variable is then calculated as the reciprocal of the variance explained by the other predictors, which is equal to 1 / (1 - R2).
+
+    Here, R2 is the coefficient of determination for the linear regression using the predictor variable as the response variable. The VIF calculation can be summarized in the following steps:
+
+        1. For each predictor variable Xi in the regression model, perform a linear regression using Xi as the response variable and the remaining predictor variables as the independent variables.
+
+        2. Calculate the R2 value for each of these linear regressions.
+
+        3. Compute the VIF for each predictor variable Xi as VIFi = 1 / (1 - R2i).
+
+    A VIF value close to 1 indicates that there is very little multicollinearity for the predictor variable, whereas a high VIF value (e.g., greater than 5 or 10, depending on the context) suggests that multicollinearity may be a problem for the predictor variable, and its estimated coefficient might be less reliable. 
+    
+    Keep in mind that VIF only provides an indication of the presence and severity of multicollinearity and does not directly address the issue.
+
+# Condition number
+    * It is the ratio of the largest eigen value to the smallest eigen value
+    * It tells the ill-condition of the matrix - measures how much is the determinant near to zero
+
+    np.linlang.cond(arr)
+
+    if condition number > 30, multicollinearity exists in the data
+
+
+
+# How to remove MultiCollinearity?
+    1. Collect more data
+    2. Remove one of the highly co-related variables
+    3. Combine co-related variables - add, average, prod etc
+    4. Use partial least square regression (PLS)
+        Apply PCS first and then apply LR

@@ -9,3 +9,4 @@
     - batch GD (2 python files, one note)
     - stochastic GD (2 python files, one note)
     - mini batch GD (2 python files, one note)
+    - multicollinearity (one note)
