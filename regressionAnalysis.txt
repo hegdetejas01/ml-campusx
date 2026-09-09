@@ -89,15 +89,36 @@
     
 # Degree of Freedom
     The total degree of freedom (df_total) represents the total number of data points minus 1 (n-1)
-    It represents the overall variability in the dataset that can be attributed to both the model and the residuals
+    It represents the overall variability (TSS) in the dataset that can be attributed to both the model and the residuals (RSS)
 
-    * Total degree of freefom in LR is divided into 2 components
+    * Total degree of freedom in LR is divided into 2 components
+        df_total = df_model + df_residual
+
+        1. df_model = number of independent variables in the model
+
+        2. df_residual = 
+            number of data points(n) - number of estimated paramaters including the intercept (k+1)
+            = n - (k+1)
+
+            It indicates the number of independent pieces of information that are available for estimating the variability in the residuals after fitting the regression model.
+
+            We need a minimum of 3 points to have a regression line and variability in the regression line (because when there are only 2 points, the regression line passes through the points exactly and hence no variability is seen)
+            Therefore, 
+                when n=3, df = 1 (there is one independent point)
+                    df_residual (for simple lr, k=1) = n-k-1 = 3-1-1 = 1
+                when n=4, df = 2
+                    df_residual (for simple lr, k=1) = n-k-1 = 4-1-1 = 2
+
+            Consider the data in 3D, 
+            to make a regression plan, we need a minimum of 3 points (which fits perfectly). Hence, we need a minimum of 4 points to have a variability
+                when n=4, k=2, df_residual = n-k-1 = 4-2-1 = 3
+
+        df_total = df_model + df_residual
+                 = k + (n-k-1)
+                 = n-1
 
 
+# F-Test for overall significance
+    * It is a test used to determine whether a LR model is statistically significant, meaning it provides a better fit to the data than just using the mean of the dependent variable
 
-
-
-
-
-
-
+    * Eg. Has the prediction been better by adding the experience feature than when there was no experience data
